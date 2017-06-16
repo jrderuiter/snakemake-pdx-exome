@@ -23,18 +23,25 @@ The workflow essentially performs the following steps:
 QC statistics are generated using fastqc and samtools stats, and are summarized
 using multiqc.
 
+**Note that this workflow is still under active development.**
+
 ## Usage
 
 ### Step 1: Install workflow
 
 If you simply want to use this workflow, download and extract the [latest release](https://github.com/snakemake-workflows/pdx-exome/releases).
-If you intend to modify and further develop this workflow, fork this reposity. Please consider providing any generally applicable modifications via a pull request.
+If you intend to modify and further develop this workflow, fork this
+repository. Please consider providing any generally applicable modifications
+via a pull request.
 
-In any case, if you use this workflow in a paper, don't forget to give credits to the authors by citing the URL of this repository and, if available, its DOI (see above).
+In any case, if you use this workflow in a paper, don't forget to give credits
+to the authors by citing the URL of this repository and, if available, its
+DOI (see above).
 
 ### Step 2: Configure workflow
 
-Configure the workflow according to your needs via editing the file `config.yaml`.
+Configure the workflow according to your needs via editing the file
+`config.yaml`.
 
 ### Step 3: Execute workflow
 
@@ -54,7 +61,8 @@ or
 
     snakemake --drmaa --jobs 100
 
-See the [Snakemake documentation](https://snakemake.readthedocs.io) for further details.
+See the [Snakemake documentation](https://snakemake.readthedocs.io) for
+further details.
 
 ## Authors
 
