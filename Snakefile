@@ -1,3 +1,4 @@
+from os import path
 import pandas as pd
 
 configfile: 'config.yaml'
@@ -10,11 +11,14 @@ samples = pd.read_csv('samples.tsv', sep='\t')
 
 
 ################################################################################
-# Functions                                                                     #
+# Functions                                                                    #
 ################################################################################
 
 def get_samples():
     return list(samples['sample'].unique())
+
+def get_samples_with_lane():
+    return list((samples['sample'] + '.' + samples['lane']).unique())
 
 def get_sample_lanes(sample):
     subset = samples.loc[samples['sample'] == sample]
@@ -27,11 +31,10 @@ def get_sample_lanes(sample):
 
 rule all:
     input:
-        #expand('filtered/{sample}.bam', sample=get_samples())
-        'fastq/1957_6_T250.L001.R1.fastq.gz'
+        'vcf/calls.vcf',
+        'qc/multiqc_report.html'
 
 include: "rules/fastq.smk"
-include: "rules/cutadapt.smk"
-include: "rules/fastqc.smk"
-include: "rules/bwa.smk"
-include: "rules/disambiguate.smk"
+include: "rules/alignment.smk"
+include: "rules/freebayes.smk"
+include: "rules/qc.smk"

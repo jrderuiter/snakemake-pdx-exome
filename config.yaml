@@ -1,3 +1,46 @@
-# This file should contain everything to configure the workflow on a global scale.
-# In case of sample based data, it should be complemented by a samples.tsv file that contains
-# one row per sample. It can be parsed easily via pandas.
+cutadapt:
+  extra: >-
+    -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+    -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+    -q 20
+    --minimum-length 60
+
+bwa_graft:
+  index: '/path/to/graft_index'
+  extra: "-R \"@RG\\tID:{sample}.{lane}\\tSM:{sample}\\t\
+          PU:{sample}.{lane}\\tPL:ILLUMINA\\tCN:CENTRE\""
+  sort_extra: '-XX:ParallelGCThreads=5'
+  threads: 5
+
+bwa_host:
+  index: '/path/to/host_index'
+  extra: "-R \"@RG\\tID:{sample}.{lane}\\tSM:{sample}\\t\
+          PU:{sample}.{lane}\\tPL:ILLUMINA\\tCN:CENTRE\""
+  sort_extra: '-XX:ParallelGCThreads=5'
+  threads: 5
+
+picard_merge_bam:
+  extra: '-XX:ParallelGCThreads=5'
+
+disambiguate:
+  extra: ''
+
+picard_sort_bam:
+  extra: >-
+    -XX:ParallelGCThreads=5
+    VALIDATION_STRINGENCY=LENIENT
+
+picard_mark_duplicates:
+  extra: >-
+    -XX:ParallelGCThreads=5
+    VALIDATION_STRINGENCY=LENIENT
+
+freebayes:
+  reference: '/path/to/genome.fasta'
+  extra: >-
+    --min-alternate-fraction 0.1
+    --min-alternate-count 3
+    --min-coverage 10
+
+fastqc:
+  extra: ''
