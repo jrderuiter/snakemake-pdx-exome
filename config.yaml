@@ -14,7 +14,8 @@ cutadapt:
 bwa:
   index_graft: '/path/to/graft_index'
   index_host: '/path/to/host_index'
-  extra: "-R \"@RG\\tID:{sample}.{lane}\\tSM:{sample}\\t\
+  extra: "-M
+          -R \"@RG\\tID:{sample}.{lane}\\tSM:{sample}\\t\
           PU:{sample}.{lane}\\tPL:ILLUMINA\\tCN:CENTRE\""
   sort_extra: '-XX:ParallelGCThreads=5'
   threads: 5
