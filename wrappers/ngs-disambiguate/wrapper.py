@@ -5,17 +5,25 @@ __copyright__ = "Copyright 2017, Julian de Ruiter"
 __email__ = "julianderuiter@gmail.com"
 __license__ = "MIT"
 
+
 from os import path
 
 from snakemake.shell import shell
 
 
 # Extract arguments.
-output_dir = path.dirname(snakemake.output[0])
-prefix = snakemake.params.prefix
+prefix = snakemake.params.get("prefix", None)
 extra = snakemake.params.get("extra", "")
 
+output_dir = path.dirname(str(snakemake.output.a_ambiguous))
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+# If prefix is not given, we use the summary path to derive the most
+# probable sample name (as the summary path is least likely to contain)
+# additional suffixes. This is better than using a random id as prefix,
+# the prefix is also used as the sample name in the summary file.
+if prefix is None:
+    prefix = path.splitext(path.basename(str(snakemake.output.summary)))[0]
 
 # Run command.
 shell(

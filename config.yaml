@@ -1,3 +1,9 @@
+input:
+  dir: 'input'
+  # ftp:
+  #   username: 'user'
+  #   password: 'pass'
+
 cutadapt:
   extra: >-
     -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
@@ -5,15 +11,9 @@ cutadapt:
     -q 20
     --minimum-length 60
 
-bwa_graft:
-  index: '/path/to/graft_index'
-  extra: "-R \"@RG\\tID:{sample}.{lane}\\tSM:{sample}\\t\
-          PU:{sample}.{lane}\\tPL:ILLUMINA\\tCN:CENTRE\""
-  sort_extra: '-XX:ParallelGCThreads=5'
-  threads: 5
-
-bwa_host:
-  index: '/path/to/host_index'
+bwa:
+  index_graft: '/path/to/graft_index'
+  index_host: '/path/to/host_index'
   extra: "-R \"@RG\\tID:{sample}.{lane}\\tSM:{sample}\\t\
           PU:{sample}.{lane}\\tPL:ILLUMINA\\tCN:CENTRE\""
   sort_extra: '-XX:ParallelGCThreads=5'
@@ -24,11 +24,6 @@ picard_merge_bam:
 
 disambiguate:
   extra: ''
-
-picard_sort_bam:
-  extra: >-
-    -XX:ParallelGCThreads=5
-    VALIDATION_STRINGENCY=LENIENT
 
 picard_mark_duplicates:
   extra: >-
