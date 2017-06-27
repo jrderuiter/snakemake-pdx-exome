@@ -31,4 +31,4 @@ rule samtools_stats:
     output:
         "qc/samtools_stats/{sample}.txt"
     wrapper:
-        "0.17.0/bio/samtools/stats")
+        "0.17.0/bio/samtools/stats"
