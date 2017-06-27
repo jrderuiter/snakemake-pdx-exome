@@ -20,8 +20,9 @@ bwa:
   sort_extra: '-XX:ParallelGCThreads=5'
   threads: 5
 
-picard_merge_bam:
-  extra: '-XX:ParallelGCThreads=5'
+samtools_merge:
+  extra: ''
+  threads: 5
 
 disambiguate:
   extra: ''
