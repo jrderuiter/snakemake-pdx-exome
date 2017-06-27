@@ -1,6 +1,3 @@
-from os import path
-
-
 rule bwa_graft:
     input:
         ["fastq/trimmed/{sample}.{lane}.R1.fastq.gz",
@@ -18,7 +15,7 @@ rule bwa_graft:
     log:
         "logs/bwa/{sample}.{lane}.graft.log"
     wrapper:
-        "master/bio/bwa/mem"
+        "0.17.0/bio/bwa/mem"
 
 
 rule bwa_host:
@@ -38,7 +35,7 @@ rule bwa_host:
     log:
         "logs/bwa/{sample}.{lane}.host.log"
     wrapper:
-        "master/bio/bwa/mem"
+        "0.17.0/bio/bwa/mem"
 
 
 def merge_inputs(wildcards):

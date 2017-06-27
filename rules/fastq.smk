@@ -1,6 +1,3 @@
-from os import path
-
-
 rule cutadapt:
     input:
         ["fastq/raw/{sample}.{lane}.R1.fastq.gz",
@@ -14,4 +11,4 @@ rule cutadapt:
     log:
         "logs/cutadapt/{sample}.{lane}.log"
     wrapper:
-        "master/bio/cutadapt/pe"
+        "0.17.0/bio/cutadapt/pe"

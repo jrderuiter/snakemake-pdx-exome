@@ -1,6 +1,3 @@
-from os import path
-
-
 rule multiqc:
     input:
         expand("qc/fastqc/{sample_lane}.{pair}_fastqc.html",
@@ -13,7 +10,7 @@ rule multiqc:
     params:
         ""
     shell:
-        "file://" + path.join(workflow.basedir, "wrappers/multiqc")
+        "0.17.0/bio/multiqc"
 
 
 rule fastqc:
@@ -25,7 +22,7 @@ rule fastqc:
     params:
         config["fastqc"]["extra"]
     wrapper:
-        "master/bio/fastqc"
+        "0.17.0/bio/fastqc"
 
 
 rule samtools_stats:
@@ -34,4 +31,4 @@ rule samtools_stats:
     output:
         "qc/samtools_stats/{sample}.txt"
     wrapper:
-        "file://" + path.join(workflow.basedir, "wrappers/samtools/stats")
+        "0.17.0/bio/samtools/stats")
