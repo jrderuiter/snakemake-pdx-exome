@@ -4,7 +4,8 @@ rule multiqc:
                sample_lane=get_samples_with_lane(), pair=["R1", "R2"]),
         expand("qc/samtools_stats/{sample}.txt", sample=get_samples()),
         expand("qc/picard_mark_duplicates/{sample}.metrics",
-               sample=get_samples())
+               sample=get_samples()),
+        expand("qc/disambiguate/{sample}.txt", sample=get_samples())
     output:
         "qc/multiqc_report.html"
     params:

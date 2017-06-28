@@ -70,7 +70,7 @@ rule disambiguate:
         b_ambiguous=temp("bam/disambiguate/{sample}.host.ambiguous.bam"),
         a_disambiguated=temp("bam/disambiguate/{sample}.graft.bam"),
         b_disambiguated=temp("bam/disambiguate/{sample}.host.bam"),
-        summary="qc/disambiguate/{sample}.summary.txt"
+        summary="qc/disambiguate/{sample}.txt"
     params:
         algorithm="bwa",
         prefix="{sample}",
