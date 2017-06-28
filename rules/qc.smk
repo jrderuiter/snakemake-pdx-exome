@@ -9,7 +9,9 @@ rule multiqc:
         "qc/multiqc_report.html"
     params:
         ""
-    shell:
+    conda:
+        path.join(workflow.basedir, "envs/multiqc.yaml")
+    wrapper:
         "0.17.0/bio/multiqc"
 
 
