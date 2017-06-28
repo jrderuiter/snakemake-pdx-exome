@@ -52,7 +52,7 @@ rule samtools_merge:
     input:
         merge_inputs
     output:
-        "bam/merged/{sample}.{organism}.bam"
+        temp("bam/merged/{sample}.{organism}.bam")
     params:
         "-n" + config["samtools_merge"]["extra"]
     threads:
@@ -85,8 +85,9 @@ rule sambamba_sort:
     output:
         "bam/sorted/{sample}.bam"
     params:
-        "--tmpdir=tmp"
-    threads: 10
+        config["sambamba_sort"]["extra"]
+    threads:
+        config["sambamba_sort"]["threads"]
     wrapper:
         "0.17.0/bio/sambamba/sort"
 

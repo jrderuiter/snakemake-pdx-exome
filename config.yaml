@@ -27,6 +27,10 @@ samtools_merge:
 disambiguate:
   extra: ''
 
+sambamba_sort:
+  extra: '--tmpdir=tmp'
+  threads: 10
+
 picard_mark_duplicates:
   extra: >-
     -XX:ParallelGCThreads=5
