@@ -54,7 +54,7 @@ rule samtools_merge:
     output:
         temp("bam/merged/{sample}.{organism}.bam")
     params:
-        "-n" + config["samtools_merge"]["extra"]
+        config["samtools_merge"]["extra"] + " -n"
     threads:
         config["samtools_merge"]["threads"]
     wrapper:

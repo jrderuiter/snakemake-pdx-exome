@@ -29,7 +29,7 @@ disambiguate:
 
 sambamba_sort:
   extra: '--tmpdir=tmp'
-  threads: 10
+  threads: 5
 
 picard_mark_duplicates:
   extra: >-
