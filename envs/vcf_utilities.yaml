@@ -1,0 +1,7 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - bcftools ==1.5
+  - vcflib ==1.0.0_rc1
+  - vt ==2015.11.10
